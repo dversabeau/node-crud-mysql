@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 const MainLayout = () => {
 
-  const list = useSelector(state => state.employees)
+  const list = useSelector(state => state.employees);
 
   const
     create = 'create',
@@ -13,11 +13,11 @@ const MainLayout = () => {
     sup = 'delete';
 
   return (
-    <div>
+    <div className='main-body'>
       <ListEmployees status={read} list={list} />
-      {/* <ListEmployees status={create} />
-      <ListEmployees status={update} />
-      <ListEmployees status={sup} /> */}
+      <ListEmployees status={create} list={list}/>
+      <ListEmployees status={update} list={list}/>
+      <ListEmployees status={sup} list={list}/>
     </div>
   )
 }
