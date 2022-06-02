@@ -3,6 +3,7 @@ const app = express();
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const cors = require('cors');
+const router = require('./api/router')
 
 app.use(
   cors({
@@ -14,8 +15,8 @@ app.use(
 
 db = mysql.createConnection({
   host: "localhost",
-  user: "cda1",
-  password: "root",
+  user: "dan",
+  password: "dan$",
   database: "crud",
   port: "3306"
 });
@@ -29,5 +30,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+
+app.use(router)
 
 app.listen(8080, () => console.log("Server started: 8080"));
