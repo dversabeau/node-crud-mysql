@@ -27,7 +27,7 @@ export const employeeDataSlice = createSlice({
       {
         "id": 5,
         "name": "Morghan",
-        "age": 99,
+        "age": 9,
       }
     ],
   },
@@ -39,11 +39,21 @@ export const employeeDataSlice = createSlice({
       state.employees.push(action.payload);
     },
     deleteEmployee: (state, action) => {
-      let index = state.employees.findIndex(({ id }) => id === action.payload.id);
+      let index = action.payload;
       state.employees.splice(index, 1)
+    },
+    updateEmployee: (state, action) => {
+      let newEmployee = action.payload;
+      let oldEmployee = action.payload.employee
+      state.employees.splice(oldEmployee.id, 1, newEmployee);
     }
   },
 })
 
-export const { getEmployees, createEmployee, deleteEmployee } = employeeDataSlice.actions;
+export const {
+  getEmployees,
+  createEmployee,
+  deleteEmployee,
+  updateEmployee,
+} = employeeDataSlice.actions;
 export default employeeDataSlice.reducer;

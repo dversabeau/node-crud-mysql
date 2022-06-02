@@ -2,3 +2,10 @@
   border-collapse: collapse;
   border: solid 1px black;
 }
+.button-new{
+  display: none;
+}
+.button-new-1{
+  display: unset;
+}
+
