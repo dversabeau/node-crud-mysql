@@ -1,7 +1,7 @@
 import './ListItems.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createEmployee, deleteEmployee, updateEmployee } from '../feature/employee.slice';
+import { createEmployee, deleteEmployee, deleteEmployeeAsync, deleteEmployeesAsync, updateEmployee } from '../feature/employee.slice';
 
 const ListItems = (props) => {
   const dispatch = useDispatch();
@@ -65,7 +65,7 @@ const ListItems = (props) => {
   }
 
   function submitDelete(e) {
-    dispatch(deleteEmployee(e))
+    dispatch(deleteEmployeeAsync(e))
   }
 
   const employeeForm = (items) => {

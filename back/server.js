@@ -6,11 +6,7 @@ const cors = require('cors');
 const router = require('./api/router')
 
 app.use(
-  cors({
-    origin: ["http://localhost:8080"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
+  cors('*')
 );
 
 db = mysql.createConnection({
