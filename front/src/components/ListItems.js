@@ -1,12 +1,12 @@
 import './ListItems.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createEmployee, deleteEmployee, deleteEmployeeAsync, deleteEmployeesAsync, updateEmployee } from '../feature/employee.slice';
+import { createEmployeeAsync, deleteEmployeeAsync, updateEmployeeAsync } from '../feature/employee.slice';
 
 const ListItems = (props) => {
   const dispatch = useDispatch();
 
-  const { items, status } = props;
+  const { items, status, index } = props;
 
   const [onCreate, setOnCreate] = useState(false);
   const [onUpdate, setOnUpdate] = useState(false);
@@ -18,7 +18,7 @@ const ListItems = (props) => {
       case 'create':
         return (
           <button
-            className={'button-new button-new-' + items.id}
+            className={'button-new button-new-' + index}
             type='button'
             value='Créer'
             onClick={(e) => {
@@ -53,19 +53,20 @@ const ListItems = (props) => {
     }
   }
 
-  function submitCreate() {
-    dispatch(createEmployee({ name, age }))
+  function submitCreate(name, age) {
+    dispatch(createEmployeeAsync({ name, age }))
     setAge('')
     setName('')
   }
 
-  function submitUpdate(employee ) {
-    dispatch(updateEmployee({employee, name, age }))
+  function submitUpdate(id, name, age) {
+    // console.log('front employee', employee)
+    dispatch(updateEmployeeAsync({id, name, age}))
 
   }
 
-  function submitDelete(e) {
-    dispatch(deleteEmployeeAsync(e))
+  function submitDelete(id) {
+    dispatch(deleteEmployeeAsync(id))
   }
 
   const employeeForm = (items) => {
@@ -87,8 +88,8 @@ const ListItems = (props) => {
           onChange={(e) => setAge(age => e.target.value)}></input>
         <button onClick={(e) =>
           status === 'create' ?
-            submitCreate() :
-            submitUpdate(items)} >Valider</button>
+            submitCreate(name, age) :
+            submitUpdate(items.id, name, age)} >Valider</button>
       </div>
     )
   }

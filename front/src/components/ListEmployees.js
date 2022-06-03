@@ -26,7 +26,7 @@ const ListEmployees = (props) => {
       {list.map((employee, index) => {
         return (
           <div key={index}>
-            <ListItems items={employee} status={status} />
+            <ListItems items={employee} index={index} status={status} />
           </div>
         );
       })}

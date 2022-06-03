@@ -9,6 +9,8 @@ app.use(
   cors('*')
 );
 
+app.use(express.json())
+
 db = mysql.createConnection({
   host: "localhost",
   user: "dan",
@@ -24,7 +26,7 @@ db.connect((err) => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-    extended: false
+    extended: true
 }));
 
 app.use(router)

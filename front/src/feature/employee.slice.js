@@ -34,11 +34,37 @@ export const getEmployeesAsync = () => async (dispatch) => {
   }
 };
 
-export const deleteEmployeeAsync = (data) => async (dispatch) => {
-  // console.log(data)
+export const deleteEmployeeAsync = (id) => async (dispatch) => {
   try {
-    const response = await axios.delete(`http://localhost:8080/?${data}`);
+    const response = await axios.delete(`http://localhost:8080/`, {
+      data: { id: id },
+    });
     dispatch(deleteEmployee(response.data));
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+export const updateEmployeeAsync = (employee) => async (dispatch) => {
+  console.log('employe.slice', employee.id)
+  try {
+    const response = await axios.put(`http://localhost:8080/`, {
+      data: { id: employee.id, name: employee.name, age: employee.age },
+    });
+    console.log('data.slice', response.data)
+    dispatch(updateEmployee(response.data));
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+export const createEmployeeAsync = (employee) => async (dispatch) => {
+  console.log('employee', employee)
+  try {
+    const response = await axios.post(`http://localhost:8080/`, {
+      data: { name: employee.name, age: employee.age },
+    });
+    dispatch(createEmployee(response.data));
   } catch (err) {
     throw new Error(err);
   }
