@@ -11,16 +11,13 @@ export const employeeDataSlice = createSlice({
       state.data = action.payload.data;
     },
     createEmployee: (state, action) => {
-      state.data.push(action.payload);
+      state.data = action.payload.data;
     },
     deleteEmployee: (state, action) => {
-      let index = action.payload;
-      state.data.splice(index, 1);
+      state.data = action.payload.data;
     },
     updateEmployee: (state, action) => {
-      let newEmployee = action.payload;
-      let oldEmployee = action.payload.employee;
-      state.data.splice(oldEmployee.id, 1, newEmployee);
+      state.data = action.payload.data;
     },
   },
 });

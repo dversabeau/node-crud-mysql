@@ -88,8 +88,11 @@ const ListItems = (props) => {
           onChange={(e) => setAge(age => e.target.value)}></input>
         <button onClick={(e) =>
           status === 'create' ?
-            submitCreate(name, age) :
-            submitUpdate(items.id, name, age)} >Valider</button>
+            submitCreate(name, age === '' ? 0 : age) :
+            submitUpdate(items.id, 
+            name === '' ? items.name : name, 
+            age === '' ? items.age : age)} 
+            >Valider</button>
       </div>
     )
   }
